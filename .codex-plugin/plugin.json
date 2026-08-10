@@ -1,0 +1,22 @@
+{
+  "name": "auditor-processual",
+  "version": "0.8.0",
+  "description": "Legal Process Parser para ingestão, rastreabilidade e auditoria assistida de processos.",
+  "author": {
+    "name": "Lucianum (lucianum7)",
+    "url": "https://www.instagram.com/lucianum/"
+  },
+  "homepage": "https://github.com/lucianum7/AuditorProcessual",
+  "repository": "https://github.com/lucianum7/AuditorProcessual",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Auditor Processual",
+    "shortDescription": "Parser jurídico rastreável.",
+    "longDescription": "Inclui a skill Legal Process Parser e um pipeline Python local para estruturar processos sem perder cobertura, referências ou segurança documental.",
+    "developerName": "lucianum7",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use Legal Process Parser. Inspecione os materiais enviados, o manifesto e relatorio_processual.md; pergunte somente quando houver ambiguidade, conflito ou dado indispensável ausente e execute apenas a tarefa solicitada."
+  }
+}

@@ -1,0 +1,32 @@
+# AuditorProcessual
+
+> Skill multiplataforma para ingestão integral, localização e análise rastreável de processos.
+
+Leia primeiro `AI_ENTRYPOINT.md`. Não varra o repositório inteiro.
+
+## Núcleo
+
+- `skills/legal-process-parser/SKILL.md`: regras jurídicas e fluxo principal.
+- `routing/task-router.json`: mapa de tarefas e referências mínimas.
+- `skills/legal-process-parser/references/request_intake_rules.md`: perguntas adaptativas.
+- `skills/legal-process-parser/references/visual_description_rules.md`: imagens e semântica visual.
+
+## Plataformas
+
+- `SKILL.md`: entrada Manus/GitHub.
+- `GEMINI.md`: entrada Gemini CLI.
+- `adapters/gemini/GEM_INSTRUCTIONS.md`: Gemini Gems.
+- `adapters/grok/SYSTEM_INSTRUCTIONS.md`: Grok.
+- `adapters/chatgpt/INSTRUCTIONS.md`: ChatGPT/GPT.
+- `adapters/claude/CLAUDE_INSTRUCTIONS.md`: Claude.
+
+## Tarefas
+
+Use somente a referência correspondente em `routing/task-router.json`. Para um
+processo completo, percorra todas as páginas e imagens do corpus por blocos, não
+todas as instruções do repositório.
+
+## Não carregar por padrão
+
+`adapters/` de outra plataforma, `tests/`, `build/`, `CHANGELOG.md`, `LICENSE` e
+artefatos de empacotamento.

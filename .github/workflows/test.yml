@@ -1,0 +1,43 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        working-directory: skills/legal-process-parser
+        run: python -m unittest discover -s tests -v
+      - name: Validate skill metadata
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          text = Path("skills/legal-process-parser/SKILL.md").read_text(encoding="utf-8")
+          match = re.match(r"^---\nname: ([a-z0-9-]+)\ndescription: (.+)\n---\n", text)
+          assert match, "invalid SKILL.md frontmatter"
+          assert len(match.group(1)) <= 64
+          assert match.group(2).strip()
+          print("SKILL.md metadata OK")
+      - name: Validate universal routing
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          router = json.loads(Path("routing/task-router.json").read_text(encoding="utf-8"))
+          assert set(router["tasks"]) == {"ingest", "analyze", "petition", "deadlines", "evidence", "audit"}
+          assert Path("AI_ENTRYPOINT.md").is_file()
+          assert Path("llms.txt").is_file()
+          print("Universal routing OK")
+          PY
+      - name: Build platform packages
+        run: python scripts/build_platform_packages.py --output .ci-artifacts
+          PY
